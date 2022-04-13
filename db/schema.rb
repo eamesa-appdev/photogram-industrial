@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_12_211402) do
+ActiveRecord::Schema.define(version: 2022_04_13_233753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "photo_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["photo_id"], name: "index_comments_on_photo_id"
+  end
 
   create_table "photos", force: :cascade do |t|
     t.string "image"
@@ -43,5 +53,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_211402) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "photos"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "photos", "users", column: "owner_id"
 end
