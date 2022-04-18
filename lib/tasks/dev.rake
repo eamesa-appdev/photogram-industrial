@@ -9,10 +9,13 @@ task sample_data: :environment do
     User.delete_all
   end
 
-  emails = Array.new {Faker::TvShows::SiliconValley.unique.email}
+  emails = Array.new {}
   
   emails << "harry@aviato.com"
   emails << "maya@aviato.com"
+  10.times do
+    emails << Faker::TvShows::SiliconValley.unique.email
+  end
 
   emails.each do |mail|
     User.create(
