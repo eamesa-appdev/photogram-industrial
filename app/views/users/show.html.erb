@@ -9,9 +9,20 @@
           </div>
           <ul class="list-group list-group-flush">
             <% photo.comments.each do |comment| %>
-              <li class="list-group-item"><%= comment.body %></li>
+              <div class="media">
+                <img src="..." class="mr-3" alt="...">
+                <div class="media-body">
+                  <h5 class="mt-0"><%= comment.author.username %></h5>
+                  <%= comment.body %>
+                </div>
+              </div>
             <% end %>
           </ul>
+        <div class="card-body">
+          <%= link_to  %>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
       </div>
     </div>
   </div>
