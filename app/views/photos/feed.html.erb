@@ -5,10 +5,10 @@
         <%= link_to "Posts", user_path(@user.username), class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Liked photos", liked_photos_path(@user.username), class: "nav-link active" %>
+        <%= link_to "Liked photos", liked_photos_path(@user.username), class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Feed", feed_photos_path(@user.username), class: "nav-link" %>
+        <%= link_to "Feed", feed_photos_path(@user.username), class: "nav-link active" %>
       </li>
       <li class="nav-item">
         <%= link_to "Followers", user_path(@user.username), class: "nav-link" %>
@@ -17,6 +17,6 @@
   </div>  
 </div>  
 
-<% current_user.liked_photos.each do |zebra| %>
+<% current_user.feed.each do |zebra| %>
   <%= render "photos/photo", giraffe: zebra %>
 <% end %>
